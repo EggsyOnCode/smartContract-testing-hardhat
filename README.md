@@ -1,13 +1,11 @@
-# Sample Hardhat Project
+It's a rudimentary exercise in testing smart contracts for hardhat dev env.
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Uses hardhat-waffle, chai and mocha.
 
-Try running some of the following tasks:
+use the following commands to run the test
+```
+yarn hardhat compile
+yarn hardhat deploy
+yarn hardhat test
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
 ```
