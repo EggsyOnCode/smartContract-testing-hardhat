@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/TokenTransfer.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.8;\n\n\ncontract TokenTransfer{\n    //data strucutres\n    address private owner;\n    struct ToGet{\n        address receiver;\n        uint amt;\n    }\n    mapping(address=> ToGet) public ledger;\n\n    //constructor\n    constructor(){\n        owner = msg.sender;\n    }\n\n    //modifiers\n    modifier onlyOwner {\n        require(msg.sender == owner,\"Only the owner is authorized to execute the payment\");\n        _;\n    }\n\n    //functions\n\n    function transfer(address payable _to, uint amt) external payable onlyOwner returns(bool){\n        (bool success,) = _to.call{value: amt}(\"\");\n        if(success){\n            return true;\n        }\n        else{\n            return false;\n        }\n    } \n\n\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

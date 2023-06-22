@@ -1,0 +1,152 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "ledger",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amt",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x12758f62d1979085338f5614e8623599e3e04185d622a5d1e20eab7c1391624a",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "transactionIndex": 0,
+    "gasUsed": "343833",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x1310c87e92f3a1c33c13383dd9f8060936389cd95847623af065d83cf2c0013b",
+    "transactionHash": "0x12758f62d1979085338f5614e8623599e3e04185d622a5d1e20eab7c1391624a",
+    "logs": [],
+    "blockNumber": 1,
+    "cumulativeGasUsed": "343833",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "dcbd46bee53276f01ac229987105fb40",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.8+commit.dddeac2f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"ledger\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"receiver\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amt\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"_to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amt\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/TokenTransfer.sol\":\"TokenTransfer\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/TokenTransfer.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.8;\\n\\n\\ncontract TokenTransfer{\\n    //data strucutres\\n    address private owner;\\n    struct ToGet{\\n        address receiver;\\n        uint amt;\\n    }\\n    mapping(address=> ToGet) public ledger;\\n\\n    //constructor\\n    constructor(){\\n        owner = msg.sender;\\n    }\\n\\n    //modifiers\\n    modifier onlyOwner {\\n        require(msg.sender == owner,\\\"Only the owner is authorized to execute the payment\\\");\\n        _;\\n    }\\n\\n    //functions\\n\\n    function transfer(address payable _to, uint amt) external payable onlyOwner returns(bool){\\n        (bool success,) = _to.call{value: amt}(\\\"\\\");\\n        if(success){\\n            return true;\\n        }\\n        else{\\n            return false;\\n        }\\n    } \\n\\n\\n}\",\"keccak256\":\"0x26e336d1c34475d335423a576c7307c9615a56a43cffd47ad4044d06323d4e66\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506104d9806100606000396000f3fe6080604052600436106100295760003560e01c8063a9059cbb1461002e578063fbfa941f1461005e575b600080fd5b61004860048036038101906100439190610292565b61009c565b60405161005591906102ed565b60405180910390f35b34801561006a57600080fd5b5061008560048036038101906100809190610346565b6101b5565b604051610093929190610391565b60405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461012d576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101249061043d565b60405180910390fd5b60008373ffffffffffffffffffffffffffffffffffffffff16836040516101539061048e565b60006040518083038185875af1925050503d8060008114610190576040519150601f19603f3d011682016040523d82523d6000602084013e610195565b606091505b5050905080156101a95760019150506101af565b60009150505b92915050565b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010154905082565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000610229826101fe565b9050919050565b6102398161021e565b811461024457600080fd5b50565b60008135905061025681610230565b92915050565b6000819050919050565b61026f8161025c565b811461027a57600080fd5b50565b60008135905061028c81610266565b92915050565b600080604083850312156102a9576102a86101f9565b5b60006102b785828601610247565b92505060206102c88582860161027d565b9150509250929050565b60008115159050919050565b6102e7816102d2565b82525050565b600060208201905061030260008301846102de565b92915050565b6000610313826101fe565b9050919050565b61032381610308565b811461032e57600080fd5b50565b6000813590506103408161031a565b92915050565b60006020828403121561035c5761035b6101f9565b5b600061036a84828501610331565b91505092915050565b61037c81610308565b82525050565b61038b8161025c565b82525050565b60006040820190506103a66000830185610373565b6103b36020830184610382565b9392505050565b600082825260208201905092915050565b7f4f6e6c7920746865206f776e657220697320617574686f72697a656420746f2060008201527f6578656375746520746865207061796d656e7400000000000000000000000000602082015250565b60006104276033836103ba565b9150610432826103cb565b604082019050919050565b600060208201905081810360008301526104568161041a565b9050919050565b600081905092915050565b50565b600061047860008361045d565b915061048382610468565b600082019050919050565b60006104998261046b565b915081905091905056fea264697066735822122097bff6c4b91f435e401005a601cf79cb0427124a5b2fe434af20cc6f831f703564736f6c63430008080033",
+  "deployedBytecode": "0x6080604052600436106100295760003560e01c8063a9059cbb1461002e578063fbfa941f1461005e575b600080fd5b61004860048036038101906100439190610292565b61009c565b60405161005591906102ed565b60405180910390f35b34801561006a57600080fd5b5061008560048036038101906100809190610346565b6101b5565b604051610093929190610391565b60405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461012d576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016101249061043d565b60405180910390fd5b60008373ffffffffffffffffffffffffffffffffffffffff16836040516101539061048e565b60006040518083038185875af1925050503d8060008114610190576040519150601f19603f3d011682016040523d82523d6000602084013e610195565b606091505b5050905080156101a95760019150506101af565b60009150505b92915050565b60016020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010154905082565b600080fd5b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000610229826101fe565b9050919050565b6102398161021e565b811461024457600080fd5b50565b60008135905061025681610230565b92915050565b6000819050919050565b61026f8161025c565b811461027a57600080fd5b50565b60008135905061028c81610266565b92915050565b600080604083850312156102a9576102a86101f9565b5b60006102b785828601610247565b92505060206102c88582860161027d565b9150509250929050565b60008115159050919050565b6102e7816102d2565b82525050565b600060208201905061030260008301846102de565b92915050565b6000610313826101fe565b9050919050565b61032381610308565b811461032e57600080fd5b50565b6000813590506103408161031a565b92915050565b60006020828403121561035c5761035b6101f9565b5b600061036a84828501610331565b91505092915050565b61037c81610308565b82525050565b61038b8161025c565b82525050565b60006040820190506103a66000830185610373565b6103b36020830184610382565b9392505050565b600082825260208201905092915050565b7f4f6e6c7920746865206f776e657220697320617574686f72697a656420746f2060008201527f6578656375746520746865207061796d656e7400000000000000000000000000602082015250565b60006104276033836103ba565b9150610432826103cb565b604082019050919050565b600060208201905081810360008301526104568161041a565b9050919050565b600081905092915050565b50565b600061047860008361045d565b915061048382610468565b600082019050919050565b60006104998261046b565b915081905091905056fea264697066735822122097bff6c4b91f435e401005a601cf79cb0427124a5b2fe434af20cc6f831f703564736f6c63430008080033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/TokenTransfer.sol:TokenTransfer",
+        "label": "owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 13,
+        "contract": "contracts/TokenTransfer.sol:TokenTransfer",
+        "label": "ledger",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_struct(ToGet)8_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_struct(ToGet)8_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct TokenTransfer.ToGet)",
+        "numberOfBytes": "32",
+        "value": "t_struct(ToGet)8_storage"
+      },
+      "t_struct(ToGet)8_storage": {
+        "encoding": "inplace",
+        "label": "struct TokenTransfer.ToGet",
+        "members": [
+          {
+            "astId": 5,
+            "contract": "contracts/TokenTransfer.sol:TokenTransfer",
+            "label": "receiver",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 7,
+            "contract": "contracts/TokenTransfer.sol:TokenTransfer",
+            "label": "amt",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
